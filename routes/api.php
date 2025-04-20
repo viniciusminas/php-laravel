@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +36,17 @@ Route::patch('/episodes/{episode}', function (\App\Models\Episode $episode, Requ
     $episode->save();
 
     return $episode;
+});
+
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->only(['email', 'password']);
+    if (Auth::attempt($credentials) === false) {
+        return response()->json('Unauthorized', 401);
+    }
+
+    $user = \Illuminate\Support\Facades\Auth::user();
+    $user -> createToken('token');
+
+    return response()->json($token->plainTextToken);
 });

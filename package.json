@@ -7,7 +7,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "dev-php": "nodemon serve.js"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.0",
@@ -24,6 +25,7 @@
         "tailwindcss": "^3.0.18"
     },
     "dependencies": {
-        "bootstrap": "^5.1.3"
+        "bootstrap": "^5.1.3",
+        "chokidar": "^4.0.3"
     }
 }
